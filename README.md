@@ -1,5 +1,18 @@
 # Bayt-Technical-task
 
+## Installtion 
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Bayt-ecommerce-api.git
+   ```
+2. open with vscode
+3. run ``` npm i ```
+4. build Database using the build file in src/db/buildDB.sql
+5. add ``DB_URL`` to .env file
+6. ```npm run dev ```
+
+--- 
+
 # API Documentation
 
 ## 1. Get all products
