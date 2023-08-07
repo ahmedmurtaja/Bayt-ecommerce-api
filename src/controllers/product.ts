@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ValidationError } from 'yup';
-import { getProducts as getProductsService } from '../services';
+import { getProducts as getProductsService, getCatagories as getCatagoriesService } from '../services';
 import { getProductsSchema } from '../helpers/validation';
 import { templateErrors } from '../helpers';
 
@@ -30,4 +30,18 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export default getProducts;
+const getCatagories = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const categories = await getCatagoriesService();
+    res.status(200).json({
+      status: 'success',
+      data: {
+        categories,
+      },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export { getProducts, getCatagories };
