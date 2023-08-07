@@ -6,20 +6,27 @@ import { templateErrors } from '../helpers';
 
 const getProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { page, category, sort } = req.query;
+    const {
+      page, category, sort, order,
+    } = req.query;
     await getProductsSchema.validate(req.query);
 
-    const { products, totalPages } = await getProductsService({
+    const { products, totalPages, totalProductsCount } = await getProductsService({
       page: Number(page),
       category: String(category),
       sort: String(sort),
+      order: String(order),
     });
 
     res.status(200).json({
       status: 'success',
       data: {
         products,
-        totalPages,
+        pagination: {
+          currentPage: Number(page),
+          totalPages,
+          totalProductsCount,
+        },
       },
     });
   } catch (err) {
