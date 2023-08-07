@@ -3,6 +3,7 @@ import { Product } from '../models';
 import { IGetProducts } from '../types';
 
 const getProducts = async ({ page, category, sort }:IGetProducts) => {
+  const totalProductsCount = await Product.count();
   const whereCondition = category === 'all' ? {} : {
     category: {
       [Op.iLike]: `${category}`,
@@ -20,7 +21,7 @@ const getProducts = async ({ page, category, sort }:IGetProducts) => {
     limit: 10,
     offset: (page - 1) * 10,
   });
-  return { products, totalPages: Math.ceil(products.count / 10) };
+  return { products, totalPages: Math.ceil(products.count / 10), totalProductsCount };
 };
 const getCatagories = async () => {
   const categories = await Product.findAll({

@@ -9,7 +9,7 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
     const { page, category, sort } = req.query;
     await getProductsSchema.validate(req.query);
 
-    const { products, totalPages } = await getProductsService({
+    const { products, totalPages, totalProductsCount } = await getProductsService({
       page: Number(page),
       category: String(category),
       sort: String(sort),
@@ -22,6 +22,7 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
         pagination: {
           currentPage: Number(page),
           totalPages,
+          totalProductsCount,
         },
       },
     });
