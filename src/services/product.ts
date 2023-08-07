@@ -19,5 +19,11 @@ const getProducts = async ({ page, category, sort }:IGetProducts) => {
   });
   return { products, totalPages: Math.ceil(products.count / 10) };
 };
-
-export default getProducts;
+const getCatagories = async () => {
+  const categories = await Product.findAll({
+    attributes: ['category'],
+    group: ['category'],
+  });
+  return categories.map((category) => category.category);
+};
+export { getProducts, getCatagories };
