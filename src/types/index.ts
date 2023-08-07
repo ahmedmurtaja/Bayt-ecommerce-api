@@ -1,4 +1,4 @@
 import ProductsAttributes from './models';
+import IGetProducts from './product';
 
-// eslint-disable-next-line import/prefer-default-export
-export { ProductsAttributes };
+export { ProductsAttributes, IGetProducts };
