@@ -19,7 +19,10 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
       status: 'success',
       data: {
         products,
-        totalPages,
+        pagination: {
+          currentPage: Number(page),
+          totalPages,
+        },
       },
     });
   } catch (err) {

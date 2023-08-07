@@ -8,12 +8,15 @@ const getProducts = async ({ page, category, sort }:IGetProducts) => {
       [Op.iLike]: `${category}`,
     },
   };
+  const sortBy = sort === 'name' ? 'name' : 'price';
+  const sortCondition = sort === 'default' ? []
+    : [`${sortBy}`];
+
   const products = await Product.findAndCountAll({
     where: whereCondition,
     order: [
-      ['price', sort],
+      ...sortCondition,
     ],
-
     limit: 10,
     offset: (page - 1) * 10,
   });
