@@ -7,7 +7,7 @@
 ### Request
 
 `GET /api/v1/products`
-> http://localhost:8080/api/v1/products?page=1&category=all&sort=price&order=asc
+> http://localhost:8080/api/v1/products?page=1&category=all&sort=price&order=ASC
 
 Request Query Parameters:
 - page: page number - **required** , must be a positive integer
